@@ -1,0 +1,18 @@
+/*
+One of the core goals with styling that I have is to make everything as
+accesible as possible from the beginning.
+
+So, the base font size is gonna be 10px, and everything will be scaled from
+there.
+
+So if you need to re-size something, use the 'em' sizing. 'em' is a multiple
+of the root font-size. So with a base of 10px, 2em would be 20 pixels. The
+benefit being that if users have scaling enabled in their browser due to
+vision issues, our app will scale to that automatically.
+
+Also, all links and images MUST contain alt-text.
+*/
+
+:root {
+  font-size: 10px;
+}
