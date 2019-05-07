@@ -133,7 +133,7 @@ class Member(models.Model):
     notes = models.TextField(blank=True, null=True, db_column='notes')
 
     def __str__(self):
-        return u"%s %s" % (self.first_name, self.last_name)
+        return "{} {}".fomat(self.first_name, self.last_name)
 
     class Meta:
         managed = False
