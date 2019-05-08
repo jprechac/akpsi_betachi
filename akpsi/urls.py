@@ -19,5 +19,5 @@ from django.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('core/',include('akpsi_core.urls')),
+    path('',include('akpsi_core.urls')),
 ]
