@@ -2,11 +2,13 @@ DROP SCHEMA IF EXISTS akpsi;
 CREATE SCHEMA akpsi;
 USE akpsi;
 
-DROP USER IF EXISTS 'akpsi_python';
-CREATE USER 'akpsi_python'
+DROP USER IF EXISTS 'akpsi_python'@'localhost';
+ -- this will set the username and password of this account to akpsi_python. Feel free to change this if you'd like, BUT you MUST also change the environment variables.
+CREATE USER 'akpsi_python'@'localhost'
 	IDENTIFIED BY 'akpsi_python';
 
-GRANT ALL PRIVILEGES ON akpsi.* TO 'akpsi_python'@'%';
+ -- This will grant all the necessary permissions to Django's user account.
+GRANT ALL PRIVILEGES ON akpsi.* TO 'akpsi_python'@'localhost';
 
 CREATE TABLE area (
 	areaNo	int(1) NOT NULL,
