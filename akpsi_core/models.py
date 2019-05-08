@@ -9,8 +9,12 @@ class Area(models.Model):
     area_number = models.IntegerField(primary_key=True, db_column='areaNo')
     area_vp = models.ForeignKey('Member', blank=True, null=True, on_delete=models.SET_NULL, db_column='areaVP')
 
+    def __str__(self):
+        return str(self.area_number)
+
     class Meta:
         managed = False
+        ordering = ['area_number']
         db_table = 'area'
         verbose_name = 'Area'
         verbose_name_plural = 'Areas'
@@ -20,6 +24,9 @@ class Region(models.Model):
     region_name = models.CharField(max_length=50, primary_key=True, db_column='regionName')
     area_number = models.ForeignKey(Area, blank=True, null=True, on_delete=models.SET_NULL, db_column='areaNo')
     regional_director = models.ForeignKey('Member', on_delete=models.SET_NULL, blank=True, null=True, db_column='rd')
+
+    def __str__(self):
+        return self.region_name
 
     class Meta:
         managed = False
@@ -44,11 +51,13 @@ class Semester(models.Model):
     fundraising = models.IntegerField(blank=True, null=True, db_column='fundraising')
 
     def __str__(self):
-        return str(self.semester_code)
+        string = "{0} {1}".format(self.semester_term, self.semester_year)
+        return string
 
     class Meta:
         managed = False
         db_table = 'semester'
+        ordering = ['semester_year', '-semester_term']
         verbose_name = 'Semester'
         verbose_name_plural = 'Semesters'
 
@@ -65,6 +74,7 @@ class University(models.Model):
     class Meta:
         managed = False
         db_table = 'university'
+        ordering = ['university_name']
         verbose_name = 'University'
         verbose_name_plural = 'Universities'
 
@@ -77,11 +87,13 @@ class Chapter(models.Model):
     region_name = models.ForeignKey(Region, on_delete=models.SET_NULL, blank=True, null=True, db_column='region')
 
     def __str__(self):
-        return self.chapter_name
+        string = "{0} - {1}".format(self.chapter_name, self.chapter_university)
+        return string
 
     class Meta:
         managed = False
         db_table = 'chapter'
+        ordering = ['chapter_name']
         verbose_name = 'Chapter'
         verbose_name_plural = 'Chapters'
 
@@ -133,7 +145,7 @@ class Member(models.Model):
     notes = models.TextField(blank=True, null=True, db_column='notes')
 
     def __str__(self):
-        return "{} {}".fomat(self.first_name, self.last_name)
+        return "{} {}".format(self.first_name, self.last_name)
 
     class Meta:
         managed = False
