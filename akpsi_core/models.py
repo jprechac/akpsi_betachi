@@ -159,3 +159,7 @@ class Member(models.Model):
         ordering = ['chapter', 'akpsi_status', 'chapter_status', 'last_name', 'first_name']
         verbose_name = 'Member'
         verbose_name_plural = 'Members'
+
+"""
+The next classes are from MySQL views
+"""
