@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 """
-The next set of classes are models pulled from the MySQL Tables
+These classes are pulled from the MySQL Tables
 """
 class Area(models.Model):
 
@@ -108,6 +108,7 @@ class College(models.Model):
     class Meta:
         managed = False
         db_table = 'college'
+        ordering = ['college', 'major']
         verbose_name = 'College'
         verbose_name_plural = 'Colleges'
 
@@ -145,10 +146,16 @@ class Member(models.Model):
     notes = models.TextField(blank=True, null=True, db_column='notes')
 
     def __str__(self):
-        return "{} {}".format(self.first_name, self.last_name)
+        if self.nickname != None:
+            preferred = self.nickname
+        else:
+            preferred = self.first_name
+        string = "{} {}".format(preferred, self.last_name)
+        return string
 
     class Meta:
         managed = False
         db_table = 'membership'
+        ordering = ['chapter', 'akpsi_status', 'chapter_status', 'last_name', 'first_name']
         verbose_name = 'Member'
         verbose_name_plural = 'Members'
