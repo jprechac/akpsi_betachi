@@ -14,12 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 from django.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('akpsi_core.urls')),
-    path('vote/', include('vote.urls')),
-    path('points/', include('points.urls')),
+    re_path(r'^$',include('akpsi_core.urls')),
+    re_path(r'^vote/$', include('vote.urls')),
+    re_path(r'^points/$', include('points.urls')),
 ]
