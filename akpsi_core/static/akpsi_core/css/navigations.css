@@ -1,0 +1,12 @@
+.navigation {
+    padding-bottom: 10px;
+
+    background-color: var(--akpsi-blue);
+
+    font-size: 1.8rem;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: #FFFFFF;
+}

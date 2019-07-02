@@ -2,20 +2,25 @@
 {% autoescape on %}
 <html lang="en">
 <head>
+  <meta charset='utf-8'>
+  <meta name='description' content='Web application for the Beta Chi chatper of Alpha Kappa Psi Professional Business Fraternity.'>
   <link rel='stylesheet' type='type/css' href="{% static 'akpsi_core/base.css' %}">
   <script type="text/javascript" src="{% static 'js/base.js' %}"></script>
   <title>{% block title %}{% endblock %}</title>
   {% block head %}{% endblock %}
 </head>
+
 <body>
   <div class='navigation'>
-    {% block navigation %}
     <!--
-    For sure:       Home, Requirements, Vote, ->Login
-    Could be cool?  Chapterspot link, slack link
-  -->
-    {% endblock %}
+      All the stylings for this section come from the navigation.css file.
+    -->
+    <ul class='nav-list'>
+      <li class='nav-item'><a href="{% url home %}">Home</a></li>
+      <li class='nav-item'><a href="">Requirements</a></li>
+    </ul>
   </div>
+
   <div class='main'>
     {% block content %}
     {% endblock %}

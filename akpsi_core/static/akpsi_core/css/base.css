@@ -15,20 +15,34 @@ Also, all links and images MUST contain alt-text.
 
 :root {
   font-size: 10px;
+
+  --akpsi-blue: #0000FF; /* This is just a normal blue, change later */
 }
 
-h1 {}
+h1 {
+  font-size: 3.5rem;
+}
 
-h2 {}
+h2 {
+  font-size: 3rem;
+}
 
-h3 {}
+h3 {
+  font-size: 2.5rem
+}
 
-h4 {}
+h4 {
+  font-size: 2rem;
+}
 
-h5 {}
+h5 {
+  font-size: 1.5rem;
+}
 
-h6 {}
+h6 {
+  font-size: 1rem;
+}
 
-p {}
-
-table, th, td {}
+p {
+  font-size: 1.2rem;
+}
