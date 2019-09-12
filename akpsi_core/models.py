@@ -13,9 +13,9 @@ class Area(models.Model):
         return str(self.area_number)
 
     class Meta:
-        managed = False
+        # managed = False
+        # db_table = 'area'
         ordering = ['area_number']
-        db_table = 'area'
         verbose_name = 'Area'
         verbose_name_plural = 'Areas'
 
@@ -29,8 +29,8 @@ class Region(models.Model):
         return self.region_name
 
     class Meta:
-        managed = False
-        db_table = 'region'
+        # managed = False
+        # db_table = 'region'
         verbose_name = 'Region'
         verbose_name_plural = 'Regions'
 
@@ -55,8 +55,8 @@ class Semester(models.Model):
         return string
 
     class Meta:
-        managed = False
-        db_table = 'semester'
+        # managed = False
+        # db_table = 'semester'
         ordering = ['semester_year', '-semester_term']
         verbose_name = 'Semester'
         verbose_name_plural = 'Semesters'
@@ -72,8 +72,8 @@ class University(models.Model):
         return self.university_name
 
     class Meta:
-        managed = False
-        db_table = 'university'
+        # managed = False
+        # db_table = 'university'
         ordering = ['university_name']
         verbose_name = 'University'
         verbose_name_plural = 'Universities'
@@ -91,8 +91,8 @@ class Chapter(models.Model):
         return string
 
     class Meta:
-        managed = False
-        db_table = 'chapter'
+        # managed = False
+        # db_table = 'chapter'
         ordering = ['chapter_name']
         verbose_name = 'Chapter'
         verbose_name_plural = 'Chapters'
@@ -106,20 +106,33 @@ class College(models.Model):
         return self.major
 
     class Meta:
-        managed = False
-        db_table = 'college'
+        # managed = False
+        # db_table = 'college'
         ordering = ['college', 'major']
         verbose_name = 'College'
         verbose_name_plural = 'Colleges'
 
 class Member(models.Model):
 
+    akpsi_statuses = (
+        ('Collegiate', 'Collegiate'),
+        ('Alumnus','Alumnus'),
+        ('LOA-Military', 'Leave of Absense - Military Leave'),
+        ('LOA-Medical', 'Leave of Absense - Medical Leave'),
+        ('LOA-Hardship', 'Leave of Absense - Extreme Hardship'),
+        ('LOA-Abroad', 'Leave of Absense - Study Abroad'),
+        ('Pledge', 'Pledge'),
+        ('Suspended', 'Suspended'),
+        ('Faculty', 'Faculty Brother'),
+        ('Honorary', 'Honorary Brother')
+    )
+
     member_code = models.CharField(max_length=8, primary_key=True, db_column='memCode')
     first_name = models.CharField(max_length=255, blank=False, null=False, db_column='fName')
     middle_name = models.CharField(max_length=255, blank=True, null=True, db_column='mName')
     last_name = models.CharField(max_length=255, blank=False, null=False, db_column='lName')
     nickname = models.CharField(max_length=255, blank=True, null=True, db_column='nickname')
-    akpsi_status = models.CharField(max_length=255, blank=False, null=False, db_column='akpsi_status')
+    akpsi_status = models.CharField(max_length=255, blank=False, null=False, db_column='akpsi_status', choices=akpsi_statuses)
     chapter_status = models.CharField(max_length=255, blank=True, null=True, db_column='chapter_status')
     chapter = models.ForeignKey(Chapter, blank=True, null=True, on_delete=models.SET_NULL, db_column='chapter')
     email1 = models.CharField(max_length=255, blank=True, null=True, db_column='email1')
@@ -154,8 +167,8 @@ class Member(models.Model):
         return string
 
     class Meta:
-        managed = False
-        db_table = 'membership'
+        # managed = False
+        # db_table = 'membership'
         ordering = ['chapter', 'akpsi_status', 'chapter_status', 'last_name', 'first_name']
         verbose_name = 'Member'
         verbose_name_plural = 'Members'

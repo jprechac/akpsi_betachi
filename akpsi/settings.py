@@ -90,14 +90,21 @@ WSGI_APPLICATION = 'akpsi.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'HOST': '127.0.0.1',
+#         'PORT': '3306',
+#         'USER': get_env_variable('AKPSI_DB_USER'),
+#         'PASSWORD': get_env_variable('AKPSI_DB_PASSWORD'),
+#         'NAME': 'akpsi',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-        'USER': get_env_variable('AKPSI_DB_USER'),
-        'PASSWORD': get_env_variable('AKPSI_DB_PASSWORD'),
-        'NAME': 'akpsi',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db.sqlite3',
     }
 }
 

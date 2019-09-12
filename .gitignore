@@ -6,3 +6,4 @@ Random_Querries.sql
 send_to_crew.txt
 .vscode
 hidden_files
+*.sqlite3
