@@ -16,7 +16,10 @@ Also, all links and images MUST contain alt-text.
 :root {
   font-size: 10px;
 
-  --akpsi-blue: #0000FF; /* This is just a normal blue, change later */
+  --main-navy: #0000FF; /* This is just a normal blue, change later */
+  --main-gold: #D4AF37; /* This is just some random yellow, change later */
+  --main-green: #00B32C; /* This is just some random green, change later */
+  --main-pink: #F325F7; /* This is just some random pink, change later */
 }
 
 h1 {
