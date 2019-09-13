@@ -1,4 +1,6 @@
+from django.http import HttpResponseForbidden
 from django.shortcuts import render
+
 from django.views.generic import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -21,3 +23,11 @@ class HomeView(TemplateView):
         """
         context = super().get_context_data(**kwargs)
         return context
+
+def officerHomeView(request):
+    template = 'akpsi_core/officers/officer_home.html'
+    context = {}
+    if request.user.is_authenticated:
+        return render(request, template, context)
+    else:
+        return HttpResponseForbidden()

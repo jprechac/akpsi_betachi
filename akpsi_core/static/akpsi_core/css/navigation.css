@@ -1,0 +1,16 @@
+.navigation {
+    margin-bottom: 10px;
+
+    background-color: var(--main-navy);
+
+    font-size: 1.8rem;
+}
+
+.nav-item {
+    padding: .4rem .3rem;
+
+    display: inline-block;
+
+    text-decoration: none;
+    color: var(--main-gold);
+}

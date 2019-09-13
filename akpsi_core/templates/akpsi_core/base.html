@@ -4,7 +4,8 @@
 <head>
   <meta charset='utf-8'>
   <meta name='description' content='Web application for the Beta Chi chatper of Alpha Kappa Psi Professional Business Fraternity.'>
-  <link rel='stylesheet' type='type/css' href="{% static 'akpsi_core/base.css' %}">
+  <link rel='stylesheet' type='text/css' href="{% static 'akpsi_core/css/base.css' %}">
+  <link rel='stylesheet' type='text/css' href="{% static 'akpsi_core/css/navigation.css' %}">
   <script type="text/javascript" src="{% static 'js/base.js' %}"></script>
   <title>{% block title %}{% endblock %}</title>
   {% block head %}{% endblock %}
@@ -15,10 +16,13 @@
     <!--
       All the stylings for this section come from the navigation.css file.
     -->
-    <ul class='nav-list'>
-      <li class='nav-item'><a href="{% url 'home' %}">Home</a></li>
-      <li class='nav-item'><a href="">Requirements</a></li>
-    </ul>
+    <div class='nav-list'>
+      <a class="nav-item" href="{% url 'home' %}">Home</a>
+      {% if user.is_staff %}
+      <a class="nav-item" href="{% url 'officer_home' %}">Officers</a>
+      {% endif %}
+      <a class="nav-item" href="">Requirements</a>
+    </div>
   </div>
 
   <div class='main'>
