@@ -7,5 +7,10 @@ later.
 
 MemberBetaChiActives = Member.objects.filter(
     chapter = 'Beta Chi',
-    akpsi_status = 'Active'
+    akpsi_status = 'Collegiate'
+)
+
+MemberBetaChiAlumni = Member.objects.filter(
+    chapter = 'Beta Chi',
+    akpsi_status = 'Alumnus'
 )

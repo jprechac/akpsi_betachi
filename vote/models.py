@@ -1,8 +1,7 @@
 from django.db import models, transaction
-from ..akpsi_core import models as core
 
 class Vote(models.Model):
-    brother_id = models.ForeignKey(core.Member)
+    brother_id = models.ForeignKey('akpsi_core.Member', blank=False, null=True, on_delete=models.SET_NULL)
     count = models.IntegerField(default=0)
 
     def __str__(self):

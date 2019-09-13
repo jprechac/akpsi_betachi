@@ -8,7 +8,7 @@ class HomeView(TemplateView):
     """
     Landing page for the app.
     """
-    template_name = 'akpsi_core/base.html'
+    template_name = 'akpsi_core/home.html'
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
