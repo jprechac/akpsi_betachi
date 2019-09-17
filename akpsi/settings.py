@@ -147,4 +147,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-FIXTURE_DIRS = '/fixtures/'
+# FIXTURE_DIRS = '/fixtures/'

@@ -51,7 +51,8 @@ class Semester(models.Model):
     fundraising = models.IntegerField(blank=True, null=True, db_column='fundraising')
 
     def __str__(self):
-        string = "{0} {1}".format(self.semester_term, self.semester_year)
+        term = self.semester_term.lower().capitalize()
+        string = "{0} {1}".format(term, self.semester_year)
         return string
 
     class Meta:

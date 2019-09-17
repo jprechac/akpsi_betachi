@@ -1,0 +1,31 @@
+[
+    {
+        "model": "akpsi_core.semester",
+        "pk": "F2016",
+        "fields": {
+            "semester_term": "Fall",
+            "semester_year": 2016,
+            "pledges_pinned": 54
+        }
+    },
+    {
+        "model": "akpsi_core.semester",
+        "pk": "S2017",
+        "fields": {
+            "semester_term": "Spring",
+            "semester_year": 2017
+        }
+    },
+    {
+        "model": "akpsi_core.semester",
+        "pk": "F2017",
+        "fields": {
+            "semester_term": "Fall",
+            "semester_year": 2017
+        }
+    },
+    {
+        "model": "akpsi_core.semester",
+        "pk": ""
+    }
+]

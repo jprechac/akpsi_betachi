@@ -1,0 +1,31 @@
+[
+    {
+        "model": "akpsi_core.university",
+        "pk": "Louisiana State University",
+        "fields": {
+            "university_city": "Baton Rouge",
+            "university_state": "Louisiana",
+            "university_country": "United States"
+        }
+    },
+    {
+        "model": "akpsi_core.area",
+        "pk": 4,
+        "fields":{}
+    },
+    {
+        "model": "akpsi_core.region",
+        "pk": "Southern Delta",
+        "fields": {
+            "area_number": 4
+        }
+    },
+    {
+        "model": "akpsi_core.chapter",
+        "pk": "Beta Chi",
+        "fields":{
+            "chapter_university": "Louisiana State University",
+            "region_name": "Southern Delta"
+        }
+    }
+]
