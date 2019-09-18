@@ -26,6 +26,8 @@ for row in cursor:
         record['fields'].update({"beginning_actives": row[5]})
     if row[6] != None:
         record['fields'].update({"applications": row[6]})
+    if row[7] != None:
+        record['fields'].update({"prospect_interviews": row[7]})
     
     semesters.append(record)
 
