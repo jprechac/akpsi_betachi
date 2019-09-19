@@ -7,15 +7,7 @@ db = sql.connect(user='python', password='python',
 
 cursor = db.cursor()
 
-print(type(cursor))
-
-data = []
-
-data = get_semester_data(data, cursor)
-data = get_chapter_data(data, cursor)
-
-with open('akpsi_core/fixtures/data.json', 'w') as file:
-    json.dump(data, file)
+# print(type(cursor))
 
 # -----------------------------------------------------------------------------
 # function definitions
@@ -60,10 +52,23 @@ def get_semester_data(data, cursor):
         
         data.append(record)
 
-        return data
+    return data
 
 def get_chapter_data(data, cursor):
 
-    data.update({"model": "akpsi_core.university","pk": "Louisiana State University","fields": {"university_city": "Baton Rouge","university_state": "Louisiana","university_country": "United States"}},{"model": "akpsi_core.area","pk": 4,"fields":{}},{"model": "akpsi_core.region","pk": "Southern Delta","fields": {"area_number": 4}},{"model": "akpsi_core.chapter","pk": "Beta Chi","fields":{"chapter_university": "Louisiana State University","region_name": "Southern Delta"}},{"model": "akpsi_core.area","pk": 1,"fields":{}},{"model": "akpsi_core.area","pk": 2,"fields":{}},{"model": "akpsi_core.area","pk": 3,"fields":{}})
+    stuff = [{"model": "akpsi_core.university","pk": "Louisiana State University","fields": {"university_city": "Baton Rouge","university_state": "Louisiana","university_country": "United States"}},{"model": "akpsi_core.area","pk": 4,"fields":{}},{"model": "akpsi_core.region","pk": "Southern Delta","fields": {"area_number": 4}},{"model": "akpsi_core.chapter","pk": "Beta Chi","fields":{"chapter_university": "Louisiana State University","region_name": "Southern Delta"}},{"model": "akpsi_core.area","pk": 1,"fields":{}},{"model": "akpsi_core.area","pk": 2,"fields":{}},{"model": "akpsi_core.area","pk": 3,"fields":{}}]
+    for i in stuff:
+        data.append(i)
 
     return data
+
+# -----------------------------------------------------------------------------
+# main shit
+
+data = []
+
+data = get_semester_data(data, cursor)
+data = get_chapter_data(data, cursor)
+
+with open('akpsi_core/fixtures/data.json', 'w') as file:
+    json.dump(data, file)
