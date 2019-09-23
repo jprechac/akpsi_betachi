@@ -1,0 +1,29 @@
+{% extends 'akpsi_core/base.html' %}
+{% load static %}
+
+{% block title %}
+{% endblock title %}
+
+{% block content %}
+
+<h1>Current Beta Chi Roster</h1>
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Chapter Status</th>
+            <th scope="col">Phone</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for mem in roster %}
+        <tr>
+            <td>{{ mem }}</td>
+            <td>{{ mem.email1 }}</td>
+            <td>{{ mem.phone }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

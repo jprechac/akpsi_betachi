@@ -174,6 +174,36 @@ class Member(models.Model):
         verbose_name = 'Member'
         verbose_name_plural = 'Members'
 
-"""
-The next classes are from MySQL views
-"""
+class Officer(models.Model):
+
+    position_choices = (
+        ('president', 'President'),
+        ('evp', 'Executive Vice President'),
+        ('vpm','Vice President of Membership'),
+        ('vpf', 'Vice President of Finance'),
+        ('vppd', 'Vice President of Professional Development'),
+        ('vpar', 'Vice President of Alumni Relations'),
+        ('vppr', 'Vice President of Public Relations'),
+        ('dor', 'Director of Recruitment'),
+        ('docr', 'Director of Corporate Relations'),
+        ('secretary', 'Secretary'),
+        ('mor', 'Master of Rituals'),
+        ('treasurer', 'Treasurer'),
+        ('social', 'Social Chair'),
+        ('service', 'Service Chair'),
+        ('historian', 'Historian'),
+        ('webmaster', 'Webmaster'),
+        ('dpr', 'Director of Public Relations'), #not a year-long position
+        ('warden', 'Warden')
+    )
+
+    id = models.AutoField(primary_key=True, blank=False, null=False)
+    member_code = models.ForeignKey(Member, blank=False, null=False, on_delete=models.CASCADE)
+    sem_code = models.ForeignKey(Semester, blank=False, null=False, on_delete=models.CASCADE)
+    position = models.CharField(max_length=255, blank=False, null=False, choices=position_choices)
+
+    def __str__(self):
+        return "{}, {} - {}".format(self.get_position_display(), self.member_code, self.sem_code)
+
+
+# The next classes are from MySQL views

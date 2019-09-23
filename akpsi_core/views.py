@@ -5,6 +5,10 @@ from django.views.generic import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 
+from akpsi_core.models import (
+    Member, Officer, Semester, Chapter
+)
+
 # Create your views here.
 class HomeView(TemplateView):
     """
@@ -27,7 +31,19 @@ class HomeView(TemplateView):
 def officerHomeView(request):
     template = 'akpsi_core/officers/officer_home.html'
     context = {}
-    if request.user.is_authenticated:
+    if request.user.is_staff:
         return render(request, template, context)
     else:
         return HttpResponseForbidden()
+
+def currentRoster(request):
+    if not request.user.is_staff:
+        return HttpResponseForbidden()
+    
+    template = "akpsi_core/officers/current_roster.html"
+    roster = Member.objects.filter(akpsi_status='Collegiate', chapter='Beta Chi')
+    context = {
+        'roster': roster
+    }
+
+    return render(request, template, context)

@@ -62,6 +62,32 @@ def get_chapter_data(data, cursor):
 
     return data
 
+def get_officer_data(data, cursor):
+    # this is a temp set, update to pull from db later
+    stuff = [
+        {
+            "model": "akpsi_core.officer",
+            "pk": 1,
+            "fields": {
+                "member_code": "f16joprc",
+                "sem_code": "F2017",
+                "position": "evp"
+            }
+        },
+        {
+            "model": "akpsi_core.officer",
+            "pk": 2,
+            "fields": {
+                "member_code": "f16joprc",
+                "sem_code": "S2018",
+                "position": "evp"
+            }
+        }
+    ]
+    for i in stuff:
+        data.append(i)
+    return data
+
 # -----------------------------------------------------------------------------
 # main shit
 
@@ -69,6 +95,7 @@ data = []
 
 data = get_semester_data(data, cursor)
 data = get_chapter_data(data, cursor)
+data = get_officer_data(data, cursor)
 
 with open('akpsi_core/fixtures/data.json', 'w') as file:
     json.dump(data, file)
