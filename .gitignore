@@ -7,3 +7,5 @@ send_to_crew.txt
 .vscode
 hidden_files
 *.sqlite3
+
+*/fixtures/member_data.json

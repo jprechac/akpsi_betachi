@@ -88,6 +88,37 @@ def get_officer_data(data, cursor):
         data.append(i)
     return data
 
+def get_member_data(data, cursor):
+    mem_query = "SELECT * FROM akpsi.membership WHERE chapter = 'Beta Chi'"
+    cursor.execute(mem_query)
+
+    for row in cursor:
+        # print(row)
+        record = {
+            "model": "akpsi_core.member",
+            "pk": row[0],
+            "fields": {
+                "fName": row[1],
+                "mName": row[2],
+                "lName": row[3],
+                "nickname": row[4],
+                "akpsi_status": row[5],
+                "chapter_status": row[6],
+                'chapter': row[7],
+                "email1": row[8],
+                "email2": row[9],
+                "phone": row[10],
+                'major': row[11],
+                "pledgeClass": row[12],
+                "pledge_semester": row[13],
+                "grad_semester": row[14],
+                "suspensions_semester": row[15],
+                "reinstatement_semester": row[16],
+                # "birthday": # convert the datetime to a string
+                "gender": row[18]
+            }
+        }
+
 # -----------------------------------------------------------------------------
 # main shit
 
@@ -99,3 +130,10 @@ data = get_officer_data(data, cursor)
 
 with open('akpsi_core/fixtures/data.json', 'w') as file:
     json.dump(data, file)
+
+member_data = []
+
+member_data = get_member_data(member_data, cursor)
+
+with open('akpsi_core/fixtures/member_data.json', 'w') as file:
+    json.dump(member_data, file)
