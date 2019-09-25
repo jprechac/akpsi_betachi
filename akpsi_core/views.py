@@ -48,8 +48,8 @@ def currentRoster(request):
 
     return render(request, template, context)
 
-def officer_edit_bro(request, pk):
-    template = "akpsi_core/officers/edit_bro.html"
+def bro_details(request, pk):
+    template = "akpsi_core/officers/bro_details.html"
     bro = get_object_or_404(Member, member_code=pk)
 
     context = {
