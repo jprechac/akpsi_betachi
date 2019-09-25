@@ -14,6 +14,7 @@ Current Roster
         <tr>
             <th scope="col">Name</th>
             <th scope="col">Chapter Status</th>
+            <th scope="col">Major</th>
             <th scope="col">Email 1</th>
             <th scope="col">Email 2</th>
             <th scope="col">Phone</th>
@@ -26,8 +27,9 @@ Current Roster
         <tr>
             <td><a href="{% url 'officer_edit_bro' pk=mem.member_code %}">{{ mem }}</a></td>
             <td>{{ mem.chapter_status }}</td>
-            <td>{{ mem.email1 }}</td>
-            <td>{{ mem.email2 }}</td>
+            <td>{{ mem.major }}</td>
+            <td><a href="mailto:{{ mem.email1 }}">{{ mem.email1 }}</a></td>
+            <td><a href="mailto:{{ mem.email2 }}">{{ mem.email2 }}</a></td>
             <td>{{ mem.phone }}</td>
             <td>{{ mem.pledge_semester }}</td>
             <td>{{ mem.graduate_semester }}</td>
