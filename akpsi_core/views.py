@@ -1,5 +1,5 @@
 from django.http import HttpResponseForbidden
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from django.views.generic import TemplateView
 from django.views.generic.list import ListView
@@ -44,6 +44,16 @@ def currentRoster(request):
     roster = Member.objects.filter(akpsi_status='Collegiate', chapter='Beta Chi')
     context = {
         'roster': roster
+    }
+
+    return render(request, template, context)
+
+def officer_edit_bro(request, pk):
+    template = "akpsi_core/officers/edit_bro.html"
+    bro = get_object_or_404(Member, member_code=pk)
+
+    context = {
+        'bro': bro
     }
 
     return render(request, template, context)

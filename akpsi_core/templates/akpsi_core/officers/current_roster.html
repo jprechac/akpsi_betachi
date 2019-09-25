@@ -14,15 +14,23 @@ Current Roster
         <tr>
             <th scope="col">Name</th>
             <th scope="col">Chapter Status</th>
+            <th scope="col">Email 1</th>
+            <th scope="col">Email 2</th>
             <th scope="col">Phone</th>
+            <th scope="col">Pledge Class</th>
+            <th scope="col">Graduating Semester</th>
         </tr>
     </thead>
     <tbody>
         {% for mem in roster %}
         <tr>
-            <td>{{ mem }}</td>
+            <td><a href="{% url 'officer_edit_bro' pk=mem.member_code %}">{{ mem }}</a></td>
+            <td>{{ mem.chapter_status }}</td>
             <td>{{ mem.email1 }}</td>
+            <td>{{ mem.email2 }}</td>
             <td>{{ mem.phone }}</td>
+            <td>{{ mem.pledge_semester }}</td>
+            <td>{{ mem.graduate_semester }}</td>
         </tr>
         {% endfor %}
     </tbody>

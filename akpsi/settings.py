@@ -103,10 +103,21 @@ WSGI_APPLICATION = 'akpsi.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+        'USER': get_env_variable('AKPSI_DB_USER'),
+        'PASSWORD': get_env_variable('AKPSI_DB_PASSWORD'),
+        'NAME': 'akpsi_test',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': 'db.sqlite3',
+#     }
+# }
 
 
 # Password validation

@@ -128,6 +128,12 @@ class Member(models.Model):
         ('Honorary', 'Honorary Brother')
     )
 
+    genders = (
+        ('m', 'Male'),
+        ('f', 'Female'),
+        ('o', 'Other')
+    )
+
     member_code = models.CharField(max_length=8, primary_key=True, db_column='memCode')
     first_name = models.CharField(max_length=255, blank=False, null=False, db_column='fName')
     middle_name = models.CharField(max_length=255, blank=True, null=True, db_column='mName')
@@ -146,7 +152,7 @@ class Member(models.Model):
     suspension_semester = models.ForeignKey(Semester, on_delete=models.SET_NULL, related_name='suspension_semester', blank=True, null=True, db_column='susSem')
     reinstate_semester = models.ForeignKey(Semester, on_delete=models.SET_NULL, related_name='reinstatement_semester', blank=True, null=True, db_column='reinstateSem')
     birthday = models.DateField(blank=True, null=True, db_column='birthday')
-    gender = models.CharField(max_length=1, blank=True, null=True, db_column='gender')
+    gender = models.CharField(max_length=1, blank=True, null=True, choices=genders, db_column='gender')
     dietary_restrictions = models.CharField(max_length=255, blank=True, null=True, db_column='dietRestrict')
     home_city = models.CharField(max_length=100, blank=True, null=True, db_column='homeCity')
     home_state = models.CharField(max_length=100, blank=True, null=True, db_column='homeState')
