@@ -19,12 +19,13 @@ Alumni Roster
             <th scope="col">Phone</th>
             <th scope="col">Pledge Class</th>
             <th scope="col">Graduating Semester</th>
+            <th scope="col">First Job</th>
+            <th scope="col">First Job City</th>
         </tr>
     </thead>
     <tbody>
         {% for mem in roster %}
         <tr>
-            
             <td>{{ mem }}</td>
             <td>{{ mem.major }}</td>
             <td><a href="mailto:{{ mem.email1 }}">{{ mem.email1 }}</a></td>
@@ -32,6 +33,8 @@ Alumni Roster
             <td>{{ mem.phone }}</td>
             <td>{{ mem.pledge_semester }}</td>
             <td>{{ mem.graduate_semester }}</td>
+            <td>{{ mem.work_companny }}</td>
+            <td>{{ mem.work_city }}, {{ mem.work_state }}</td>
         </tr>
         {% endfor %}
     </tbody>

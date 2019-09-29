@@ -122,9 +122,20 @@ def get_member_data(data, cursor):
                 "pledge_semester": row[13],
                 "graduate_semester": row[14],
                 "suspension_semester": row[15],
-                "reinstate_semester": row[16]
+                "reinstate_semester": row[16],
                 # "birthday": # convert the datetime to a string
-                # "gender": row[18]
+                # "gender": row[18],
+                "dietary_restrictions": row[19],
+                "home_city": row[20],
+                "home_state": row[21],
+                "home_country": row[22],
+                "graduate_program": row[23],
+                # "graduate_university": row[24], #wrong index?
+                "work_company": row[25],
+                "work_city": row[26],
+                "work_state": row[27],
+                "work_country": row[28],
+                "notes": row[29]
             }
         }
 
