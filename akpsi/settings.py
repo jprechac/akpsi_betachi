@@ -98,28 +98,20 @@ WSGI_APPLICATION = 'akpsi.wsgi.application'
 #         'PORT': '3306',
 #         'USER': get_env_variable('AKPSI_DB_USER'),
 #         'PASSWORD': get_env_variable('AKPSI_DB_PASSWORD'),
-#         'NAME': 'akpsi',
+#         'NAME': 'akpsi_test',
 #     }
 # }
 
-DATABASES = {
+DATABASES ={
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-        'USER': get_env_variable('AKPSI_DB_USER'),
-        'PASSWORD': get_env_variable('AKPSI_DB_PASSWORD'),
-        'NAME': 'akpsi_test',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'USER': get_env_variable('AKPSI_POSTGRES_USER'),
+        'PASSWORD': get_env_variable('AKPSI_POSTGRES_PASSWORD'),
+        'NAME': get_env_variable('AKPSI_POSTGRES_DATABASE'),
+        'HOST': get_env_variable('AKPSI_POSTGRES_HOST'),
+        'PORT': get_env_variable('AKPSI_POSTGRES_PORT')
     }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': 'db.sqlite3',
-#     }
-# }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

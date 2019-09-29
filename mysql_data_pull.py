@@ -89,51 +89,68 @@ def get_officer_data(data, cursor):
     return data
 
 def get_member_data(data, cursor):
-    mem_query = "SELECT * FROM akpsi.membership WHERE chapter = 'Beta Chi'"
+    mem_query = "SELECT * FROM akpsi.membership m WHERE m.chapter = 'Beta Chi'"
     cursor.execute(mem_query)
 
     for row in cursor:
         # print(row)
+        if row[11] == 'ISDS':
+            major = "Information Systems and Decision Sciences"
+        else:
+            major = row[11]
+        
+        if row[5] == 'Active':
+            status = "Collegiate"
+        else:
+            status = row[5]
         record = {
             "model": "akpsi_core.member",
             "pk": row[0],
             "fields": {
-                "fName": row[1],
-                "mName": row[2],
-                "lName": row[3],
+                "first_name": row[1],
+                "middle_name": row[2],
+                "last_name": row[3],
                 "nickname": row[4],
-                "akpsi_status": row[5],
+                "akpsi_status": status,
                 "chapter_status": row[6],
                 'chapter': row[7],
                 "email1": row[8],
                 "email2": row[9],
                 "phone": row[10],
-                'major': row[11],
-                "pledgeClass": row[12],
+                'major': major,
+                "pledge_classification": row[12],
                 "pledge_semester": row[13],
-                "grad_semester": row[14],
-                "suspensions_semester": row[15],
-                "reinstatement_semester": row[16],
+                "graduate_semester": row[14],
+                "suspension_semester": row[15],
+                "reinstate_semester": row[16]
                 # "birthday": # convert the datetime to a string
-                "gender": row[18]
+                # "gender": row[18]
             }
         }
+
+        data.append(record)
+    return data
 
 # -----------------------------------------------------------------------------
 # main shit
 
 data = []
+member_data = []
 
 data = get_semester_data(data, cursor)
 data = get_chapter_data(data, cursor)
 data = get_officer_data(data, cursor)
 
-with open('akpsi_core/fixtures/data.json', 'w') as file:
-    json.dump(data, file)
+with open('akpsi_core/fixtures/data.json', 'w') as dFile:
+    json.dump(data, dFile)
 
-member_data = []
 
 member_data = get_member_data(member_data, cursor)
+# print(member_data)
 
-with open('akpsi_core/fixtures/member_data.json', 'w') as file:
-    json.dump(member_data, file)
+with open('akpsi_core/fixtures/member_data.json', 'w') as memFile:
+    json.dump(member_data, memFile)
+
+# cursor.execute("SELECT * FROM akpsi.college")
+# for row in cursor:
+#     print(row)

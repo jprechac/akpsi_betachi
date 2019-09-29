@@ -51,6 +51,18 @@ def currentRoster(request):
 
     return render(request, template, context)
 
+def alumniRoster(request):
+    if not request.user.is_staff:
+        return HttpResponseForbidden()
+    
+    template = "akpsi_core/officers/alumni_roster.html"
+    roster = MemberBetaChiAlumni
+    context = {
+        'roster': roster
+    }
+
+    return render(request, template, context)
+
 def bro_details(request, pk):
     template = "akpsi_core/officers/bro_details.html"
     bro = get_object_or_404(Member, member_code=pk)

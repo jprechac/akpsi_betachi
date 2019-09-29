@@ -122,6 +122,7 @@ class Member(models.Model):
         ('LOA-Medical', 'Leave of Absense - Medical Leave'),
         ('LOA-Hardship', 'Leave of Absense - Extreme Hardship'),
         ('LOA-Abroad', 'Leave of Absense - Study Abroad'),
+        ('LOA', 'LOA-Unknown'),
         ('Pledge', 'Pledge'),
         ('Suspended', 'Suspended'),
         ('Faculty', 'Faculty Brother'),

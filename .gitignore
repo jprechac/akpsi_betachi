@@ -8,4 +8,6 @@ send_to_crew.txt
 hidden_files
 *.sqlite3
 
-*/fixtures/member_data.json
+# data loading files
+*/fixtures/*
+mysql_data_pull.py
