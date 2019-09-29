@@ -12,8 +12,12 @@ Edit {{ mem }}
 {% block content %}
 <h1>{{ bro }}</h1>
 
-<table class="table table-borderless table-sm" style="max-width: 500px;">
+<table class="table table-borderless table-sm" style="max-width: 600px;">
     <tbody>
+        <tr>
+            <th class="my-right" scope="col" style="width: 200px;"></th>
+            <td></td>
+        </tr>
         <tr>
             <th class="my-right" scope="col">Member Code</th>
             <td>{{ bro.member_code }}</td>
@@ -55,8 +59,8 @@ Edit {{ mem }}
             <td>{{ bro.graduate_semester }}</td>
         </tr>
         <tr>
-            <th class="my-right" scope="col">Birthday</th>
-            <td>{{ bro.birthday }}</td>
+            <th class="my-right" scope="col">Notes</th>
+            <td>{{ bro.notes }}</td>
         </tr>
     </tbody>
 </table>

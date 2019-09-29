@@ -8,6 +8,9 @@ from django.views.generic.detail import DetailView
 from akpsi_core.models import (
     Member, Officer, Semester, Chapter
 )
+from akpsi_core.models_ext import (
+    MemberBetaChiActives, MemberBetaChiAlumni
+)
 
 # Create your views here.
 class HomeView(TemplateView):
@@ -41,7 +44,7 @@ def currentRoster(request):
         return HttpResponseForbidden()
     
     template = "akpsi_core/officers/current_roster.html"
-    roster = Member.objects.filter(akpsi_status='Collegiate', chapter='Beta Chi')
+    roster = MemberBetaChiActives
     context = {
         'roster': roster
     }

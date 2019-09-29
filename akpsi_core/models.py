@@ -166,11 +166,18 @@ class Member(models.Model):
     notes = models.TextField(blank=True, null=True, db_column='notes')
 
     def __str__(self):
+        return self.display_name()
+    
+    def display_name(self):
         if self.nickname != None:
             preferred = self.nickname
         else:
             preferred = self.first_name
         string = "{} {}".format(preferred, self.last_name)
+        return string
+    
+    def full_name(self):
+        string = "{} {}".format(self.first_name, self.last_name)
         return string
 
     class Meta:
