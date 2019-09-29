@@ -1,0 +1,37 @@
+{% extends 'akpsi_core/base.html' %}
+{% load static %}
+
+{% block title %}
+Majors / Colleges
+{% endblock title %}
+
+{% block content %}
+
+<h1>Beta Chi Academics</h1>
+
+<h2 id="majors">Beta Chi Majors</h2>
+<table class="table table-striped table-hover table-responsive-xl" style="max-width: 600px;">
+    <caption>Current Majors in Beta Chi</caption>
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col" style="width: 50%;">Major</th>
+            <th scope="col" style="width: 50%;">Count</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ii in counts %}
+        <tr>
+            {% for i in ii %}
+            <td>{{ i }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2 id="colleges">Beta Chi Colleges</h2>
+<table class="table table-striped table-hover table-responsive-xl" style="max-width: 600px;">
+        <caption>Current Senior Colleges in Beta Chi</caption>
+        work in progress
+</table>
+{% endblock content %}

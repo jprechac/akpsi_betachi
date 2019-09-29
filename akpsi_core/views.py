@@ -5,8 +5,11 @@ from django.views.generic import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 
+# aggregation functions
+from django.db.models import Count
+
 from akpsi_core.models import (
-    Member, Officer, Semester, Chapter
+    Member, Officer, Semester, Chapter, College
 )
 from akpsi_core.models_ext import (
     MemberBetaChiActives, MemberBetaChiAlumni
@@ -70,5 +73,30 @@ def bro_details(request, pk):
     context = {
         'bro': bro
     }
+
+    return render(request, template, context)
+
+def majors(request):
+    template = 'akpsi_core/officers/majors.html'
+    context = {
+        'counts': []
+    }
+
+    # Get a count of each major
+    majors = MemberBetaChiActives.order_by('major').values_list('major')
+
+    unique_majors = []
+    for m in majors:
+        if m not in unique_majors:
+            unique_majors.append(m)
+    
+    for um in unique_majors:
+        count = 0
+        for ma in majors:
+            if ma == um:
+                count += 1
+        context['counts'].append((um[0], count))
+    
+    # get a count of each senior college
 
     return render(request, template, context)
