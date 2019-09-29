@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import django_heroku
 
 def get_env_variable(name):
     """
@@ -159,3 +160,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # FIXTURE_DIRS = '/fixtures/'
+
+
+# Activate Django Heroku
+django_heroku.settings(locals())
