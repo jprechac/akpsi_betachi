@@ -3,9 +3,10 @@
 ## General Information
 
 ## Required Software
-- The application is built for Windows (and, in part, requires Windows environment variables).
-- For development, it uses MySQL as it's database.
+- The application is built for Windows (and, in part, requires Windows environment variables), but should work on Mac.
+- For development, it uses MySQL server as it's database.
 - Uses Python 3.7.1, all other package versions are in the requirements file. 
+    - I recommend installing python through Anaconda.
 
 ## Apps
 Django breaks projects into sub categories called Apps. It's a convenient way to break up logic/urls into logical containers. 
