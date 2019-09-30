@@ -79,7 +79,8 @@ def bro_details(request, pk):
 def majors(request):
     template = 'akpsi_core/officers/majors.html'
     context = {
-        'counts': []
+        'major_counts': [],
+        'college_counts': []
     }
 
     # Get a count of each major
@@ -95,8 +96,22 @@ def majors(request):
         for ma in majors:
             if ma == um:
                 count += 1
-        context['counts'].append((um[0], count))
+        context['major_counts'].append((um[0], count))
     
     # get a count of each senior college
+    colleges = MemberBetaChiActives.values('major__college')
+    
+    unique_colleges = []
+    for col in colleges:
+        college = col['major__college']
+        if college not in unique_colleges:
+            unique_colleges.append(college)
+
+    for col in unique_colleges:
+        count = 0
+        for co in colleges:
+            if co['major__college'] == col:
+                count += 1
+        context['college_counts'].append((col, count))
 
     return render(request, template, context)
