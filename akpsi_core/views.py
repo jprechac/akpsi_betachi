@@ -35,12 +35,13 @@ class HomeView(TemplateView):
         return context
 
 def officerHomeView(request):
+    if not request.user.is_staff:
+        return HttpResponseForbidden()
+
     template = 'akpsi_core/officers/officer_home.html'
     context = {}
-    if request.user.is_staff:
-        return render(request, template, context)
-    else:
-        return HttpResponseForbidden()
+
+    return render(request, template, context)
 
 def currentRoster(request):
     if not request.user.is_staff:

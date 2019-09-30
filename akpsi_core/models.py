@@ -129,6 +129,12 @@ class Member(models.Model):
         ('Honorary', 'Honorary Brother')
     )
 
+    chapter_statuses = (
+        ('active', 'Active'),
+        ('senior', 'Distinguished Senior'),
+        ('ti', 'Temporary Inactive')
+    )
+
     genders = (
         ('m', 'Male'),
         ('f', 'Female'),
@@ -149,7 +155,7 @@ class Member(models.Model):
     last_name = models.CharField(max_length=255, blank=False, null=False, db_column='lName')
     nickname = models.CharField(max_length=255, blank=True, null=True, db_column='nickname')
     akpsi_status = models.CharField(max_length=255, blank=False, null=False, db_column='akpsi_status', choices=akpsi_statuses)
-    chapter_status = models.CharField(max_length=255, blank=True, null=True, db_column='chapter_status')
+    chapter_status = models.CharField(max_length=255, blank=True, null=True, choices=chapter_statuses, db_column='chapter_status')
     chapter = models.ForeignKey(Chapter, blank=True, null=True, on_delete=models.SET_NULL, db_column='chapter')
     email1 = models.CharField(max_length=255, blank=True, null=True, db_column='email1')
     email2 = models.CharField(max_length=255, blank=True, null=True, db_column='email2')
@@ -210,9 +216,11 @@ class Officer(models.Model):
         ('docr', 'Director of Corporate Relations'),
         ('secretary', 'Secretary'),
         ('mor', 'Master of Rituals'),
+        ('pledgeEd', 'Pledge Educator'),
         ('treasurer', 'Treasurer'),
         ('social', 'Social Chair'),
         ('service', 'Service Chair'),
+        ('fund', 'Fundraising Chair'),
         ('historian', 'Historian'),
         ('webmaster', 'Webmaster'),
         ('dpr', 'Director of Public Relations'), #not a year-long position

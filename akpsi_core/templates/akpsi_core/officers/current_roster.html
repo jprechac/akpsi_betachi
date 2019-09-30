@@ -27,7 +27,7 @@ Current Roster
         {% for mem in roster %}
         <tr>
             <td><a href="{% url 'bro_details' pk=mem.member_code %}">{{ mem }}</a></td>
-            <td>{{ mem.chapter_status }}</td>
+            <td>{{ mem.get_chapter_status_display }}</td>
             <td>{{ mem.major }}</td>
             <td><a href="mailto:{{ mem.email1 }}">{{ mem.email1 }}</a></td>
             <td><a href="mailto:{{ mem.email2 }}">{{ mem.email2 }}</a></td>
