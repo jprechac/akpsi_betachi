@@ -77,6 +77,9 @@ def bro_details(request, pk):
     return render(request, template, context)
 
 def majors(request):
+    if not request.user.is_staff:
+        return HttpResponseForbidden()
+    
     template = 'akpsi_core/officers/majors.html'
     context = {
         'major_counts': [],
@@ -113,5 +116,31 @@ def majors(request):
             if co['major__college'] == col:
                 count += 1
         context['college_counts'].append((col, count))
+
+    return render(request, template, context)
+
+def pledge_classes(request):
+    if not request.user.is_staff:
+        return HttpResponseForbidden()
+    
+    template = "akpsi_core/officers/pledge_classes.html"
+    context = {
+        'class_count': {}
+    }
+
+    pledge_classes = MemberBetaChiActives.values('pledge_semester')
+    pledge_classes = [i['pledge_semester'] for i in pledge_classes]
+
+    unique_classes = []
+    for i in pledge_classes:
+        if i not in unique_classes:
+            unique_classes.append(i)
+        
+    for clas in unique_classes:
+        count = 0
+        for i in pledge_classes:
+            if i == clas:
+                count += 1
+        context['class_count'].update({clas: count})
 
     return render(request, template, context)
