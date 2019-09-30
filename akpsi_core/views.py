@@ -145,3 +145,29 @@ def pledge_classes(request):
         context['class_count'].update({clas: count})
 
     return render(request, template, context)
+
+def grad_classes(request):
+    if not request.user.is_staff:
+        return HttpResponseForbidden()
+    
+    template = "akpsi_core/officers/grad_classes.html"
+    context = {
+        'class_count': {}
+    }
+
+    grad_classes = MemberBetaChiActives.values('graduate_semester')
+    grad_classes = [i['graduate_semester'] for i in grad_classes]
+
+    unique_classes = []
+    for i in grad_classes:
+        if i not in unique_classes:
+            unique_classes.append(i)
+        
+    for clas in unique_classes:
+        count = 0
+        for i in grad_classes:
+            if i == clas:
+                count += 1
+        context['class_count'].update({clas: count})
+
+    return render(request, template, context)
