@@ -94,15 +94,32 @@ def get_member_data(data, cursor):
 
     for row in cursor:
         # print(row)
+
+        # convert ISDS to fully written out
         if row[11] == 'ISDS':
             major = "Information Systems and Decision Sciences"
         else:
             major = row[11]
         
+        # convert active status to collegiate
         if row[5] == 'Active':
             status = "Collegiate"
         else:
             status = row[5]
+        
+        # convert genders to single characters
+        if row[18] == "Male":
+            gender = 'm'
+        elif row[18] == 'Female':
+            gender = 'f'
+        else:
+            gender = None
+
+        # convert birthday to string
+        if row[17] != None:
+            birthday = row[17].strftime("%Y-%m-%d")
+        else: birthday = None
+
         record = {
             "model": "akpsi_core.member",
             "pk": row[0],
@@ -123,8 +140,8 @@ def get_member_data(data, cursor):
                 "graduate_semester": row[14],
                 "suspension_semester": row[15],
                 "reinstate_semester": row[16],
-                # "birthday": # convert the datetime to a string
-                # "gender": row[18],
+                "birthday": birthday, # convert the datetime to a string
+                "gender": gender,
                 "dietary_restrictions": row[19],
                 "home_city": row[20],
                 "home_state": row[21],

@@ -1,14 +1,33 @@
 {% extends 'akpsi_core/base.html' %}
 {% load static %}
 
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'akpsi_core/css/officer_home.css' %}" />
+{% endblock head %}
+
 {% block title %}
 Officer Home
 {% endblock title %}
 
 {% block content %}
-<ul>
-    <li><a href="{% url 'current_roster' %}">Current Roster</a></li>
-    <li><a href="{% url 'alumni_roster' %}">Alumni Roster</a></li>
-    <li><a href="{% url 'majors' %}">Major and Senior College Counts</a></li>
-</ul>
+<div class="container">
+    <div class="row">
+        <div class="col-md">
+            <h2 class="o-header">Chapter Rosters</h2>
+            <ul>
+                <li><a href="{% url 'current_roster' %}">Current Roster</a></li>
+                <li><a href="{% url 'alumni_roster' %}">Alumni Roster</a></li>
+            </ul>
+        </div>
+        <div class="col-md">
+            <h2 class="o-header">Aggregated Information</h2>
+            <ul>
+                <li><a href="{% url 'majors' %}">Major and Senior College Counts</a></li>
+            </ul>
+        </div>
+        <div class="col-md">
+            <h2 class="o-header">Others</h2>
+        </div>
+    </div>
+</div>
 {% endblock content %}

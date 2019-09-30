@@ -135,6 +135,14 @@ class Member(models.Model):
         ('o', 'Other')
     )
 
+    classifications = (
+        ('Freshman', 'Freshman'),
+        ('Sophomore', 'Sophomore'),
+        ('Junior', 'Junior'),
+        ('Senior', 'Senior'),
+        ('Grad Student', 'Graduate Student')
+    )
+
     member_code = models.CharField(max_length=8, primary_key=True, db_column='memCode')
     first_name = models.CharField(max_length=255, blank=False, null=False, db_column='fName')
     middle_name = models.CharField(max_length=255, blank=True, null=True, db_column='mName')
@@ -147,7 +155,7 @@ class Member(models.Model):
     email2 = models.CharField(max_length=255, blank=True, null=True, db_column='email2')
     phone = models.CharField(max_length=15, blank=True, null=True, db_column='phone')
     major = models.ForeignKey(College, on_delete=models.SET_NULL, blank=True, null=True, db_column='major')
-    pledge_classification = models.CharField(max_length=40, blank=True, null=True, db_column='pledgeClass')
+    pledge_classification = models.CharField(max_length=40, blank=True, null=True, choices=classifications, db_column='pledgeClass')
     pledge_semester = models.ForeignKey(Semester, on_delete=models.SET_NULL, related_name='pledge_semester', blank=True, null=True, db_column='pledgeSem')
     graduate_semester = models.ForeignKey(Semester, on_delete=models.SET_NULL, related_name='grad_semester', blank=True, null=True, db_column='gradSem')
     suspension_semester = models.ForeignKey(Semester, on_delete=models.SET_NULL, related_name='suspension_semester', blank=True, null=True, db_column='susSem')
