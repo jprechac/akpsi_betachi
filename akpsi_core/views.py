@@ -1,4 +1,4 @@
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseForbidden, HttpResponseNotFound
 from django.shortcuts import render, get_object_or_404
 
 from django.views.generic import TemplateView
@@ -169,5 +169,22 @@ def grad_classes(request):
             if i == clas:
                 count += 1
         context['class_count'].update({clas: count})
+
+    return render(request, template, context)
+
+def alumnus_details(request, pk):
+    if not request.user.is_staff:
+        return HttpResponseForbidden()
+    
+    template = "akpsi_core/officers/alumnus_details.html"
+
+    # get alumnus object and ensure it is an alum
+    alum = get_object_or_404(Member, member_code=pk)
+    if alum.akpsi_status != 'Alumnus':
+        return HttpResponseNotFound()
+
+    context = {
+        'bro': alum
+    }
 
     return render(request, template, context)

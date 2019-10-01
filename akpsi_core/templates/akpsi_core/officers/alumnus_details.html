@@ -1,0 +1,59 @@
+{% extends 'akpsi_core/base.html' %}
+{% load static %}
+
+{% block title %}
+Edit {{ mem }}
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'akpsi_core/css/bro_details.css' %}" />
+{% endblock head %}
+
+{% block content %}
+<h1>{{ bro }}</h1>
+
+<table class="table table-borderless table-sm" style="max-width: 600px;">
+    <tbody>
+        <tr>
+            <th class="my-right" scope="col" style="width: 200px;"></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th class="my-right" scope="col">Member Code</th>
+            <td>{{ bro.member_code }}</td>
+        </tr>
+        <tr>
+            <th class="my-right" scope="col">AKPsi Status</th>
+            <td>{{ bro.akpsi_status }}</td>
+        </tr>
+        <tr>
+            <th class="my-right" scope="col">Email 1</th>
+            <td>{{ bro.email1 }}</td>
+        </tr>
+        <tr>
+            <th class="my-right" scope="col">Email 2</th>
+            <td>{{ bro.email2 }}</td>
+        </tr>
+        <tr>
+            <th class="my-right" scope="col">Phone</th>
+            <td>{{ bro.phone }}</td>
+        </tr>
+        <tr>
+            <th class="my-right" scope="col">Major</th>
+            <td>{{ bro.major }}</td>
+        </tr>
+        <tr>
+            <th class="my-right" scope="col">Pledge Semester</th>
+            <td>{{ bro.pledge_semester }}</td>
+        </tr>
+        <tr>
+            <th class="my-right" scope="col">Graduation Semester</th>
+            <td>{{ bro.graduate_semester }}</td>
+        </tr>
+        <tr>
+            <th class="my-right" scope="col">Notes</th>
+            <td>{{ bro.notes }}</td>
+        </tr>
+    </tbody>
+</table>
+{% endblock content %}

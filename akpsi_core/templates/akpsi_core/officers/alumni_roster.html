@@ -26,7 +26,7 @@ Alumni Roster
     <tbody>
         {% for mem in roster %}
         <tr>
-            <td>{{ mem }}</td>
+            <td><a href="{% url 'alum_detail' pk=mem.member_code %}">{{ mem }}</a></td>
             <td>{{ mem.major }}</td>
             <td><a href="mailto:{{ mem.email1 }}">{{ mem.email1 }}</a></td>
             <td><a href="mailto:{{ mem.email2 }}">{{ mem.email2 }}</a></td>
