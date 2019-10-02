@@ -14,3 +14,8 @@ MemberBetaChiAlumni = Member.objects.filter(
     chapter = 'Beta Chi',
     akpsi_status = 'Alumnus'
 ).order_by('last_name', 'first_name')
+
+MemberBetaChiPledges = Member.objects.filter(
+    chapter = 'Beta Chi',
+    akpsi_status = 'Pledge'
+).order_by('last_name', 'first_name')

@@ -6,6 +6,7 @@ urlpatterns = [
     re_path(r'^$', HomeView.as_view(), name='home'),
     re_path(r'^officer/$', views.officerHomeView, name="officer_home"),
     re_path(r'^officer/current_roster$', views.currentRoster, name='current_roster'),
+    re_path(r'^officer/pledge_roster$', views.pledgeRoster, name="pledge_roster"),
     re_path(r'^officer/alumni_roster$', views.alumniRoster, name='alumni_roster'),
     re_path(r'^officer/majors$', views.majors, name="majors"),
     re_path(r'^officer/pledge-classes$', views.pledge_classes, name="pledge_classes"),

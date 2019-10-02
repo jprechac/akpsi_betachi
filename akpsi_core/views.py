@@ -12,7 +12,7 @@ from akpsi_core.models import (
     Member, Officer, Semester, Chapter, College
 )
 from akpsi_core.models_ext import (
-    MemberBetaChiActives, MemberBetaChiAlumni
+    MemberBetaChiActives, MemberBetaChiAlumni, MemberBetaChiPledges
 )
 
 # Create your views here.
@@ -61,6 +61,18 @@ def alumniRoster(request):
     
     template = "akpsi_core/officers/alumni_roster.html"
     roster = MemberBetaChiAlumni
+    context = {
+        'roster': roster
+    }
+
+    return render(request, template, context)
+
+def pledgeRoster(request):
+    if not request.user.is_staff:
+        return HttpResponseForbidden()
+    
+    template = "akpsi_core/officers/pledge_roster.html"
+    roster = MemberBetaChiPledges
     context = {
         'roster': roster
     }

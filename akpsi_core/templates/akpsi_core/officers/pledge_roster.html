@@ -2,24 +2,23 @@
 {% load static %}
 
 {% block title %}
-Current Roster
+Current Pledge Roster
 {% endblock title %}
 
 {% block content %}
 <div class="container-fluid">
-    <h1>Current Beta Chi Roster</h1>
+    <h1>Current Beta Chi Pledge Roster</h1>
 
     <table class="table table-striped table-hover table-responsive">
-        <caption>Current Beta Chi collegiate brothers</caption>
+        <caption>Current Beta Chi Pledges</caption>
         <thead class="thead-dark">
             <tr>
                 <th scope="col">Name</th>
-                <th scope="col">Chapter Status</th>
                 <th scope="col">Major</th>
                 <th scope="col">Email 1</th>
                 <th scope="col">Email 2</th>
                 <th scope="col">Phone</th>
-                <th scope="col">Pledge Class</th>
+                <th scope="col">Classification</th>
                 <th scope="col">Graduating Semester</th>
             </tr>
         </thead>
@@ -27,7 +26,6 @@ Current Roster
             {% for mem in roster %}
             <tr>
                 <td><a href="{% url 'bro_details' pk=mem.member_code %}">{{ mem }}</a></td>
-                <td>{{ mem.get_chapter_status_display }}</td>
 
                 {% if mem.major != None %}
                 <td>{{ mem.major }}</td>
@@ -53,8 +51,8 @@ Current Roster
                 <td></td>
                 {% endif %}
 
-                {% if mem.pledge_semester != None %}
-                <td>{{ mem.pledge_semester }}</td>
+                {% if mem.pledge_classification != None %}
+                <td>{{ mem.pledge_classification }}</td>
                 {% else %}
                 <td></td>
                 {% endif %}
