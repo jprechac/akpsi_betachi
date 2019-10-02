@@ -27,14 +27,54 @@ Alumni Roster
         {% for mem in roster %}
         <tr>
             <td><a href="{% url 'alum_detail' pk=mem.member_code %}">{{ mem }}</a></td>
+            
+            {% if mem.major != None %}
             <td>{{ mem.major }}</td>
+            {% else %}
+            <td></td>
+            {% endif %}
+
+            {% if mem.email1 != None %}
             <td><a href="mailto:{{ mem.email1 }}">{{ mem.email1 }}</a></td>
+            {% else %}
+            <td></td>
+            {% endif %}
+
+            {% if mem.email2 != None %}
             <td><a href="mailto:{{ mem.email2 }}">{{ mem.email2 }}</a></td>
+            {% else %}
+            <td></td>
+            {% endif %}
+
+            {% if mem.phone %}
             <td>{{ mem.phone }}</td>
+            {% else %}
+            <td></td>
+            {% endif %}
+
+            {% if mem.pledge_semester != None %}
             <td>{{ mem.pledge_semester }}</td>
+            {% else %}
+            <td></td>
+            {% endif %}
+
+            {% if mem.graduate_semester != None %}
             <td>{{ mem.graduate_semester }}</td>
+            {% else %}
+            <td></td>
+            {% endif %}
+
+            {% if mem.work_company != None %}
             <td>{{ mem.work_company }}</td>
+            {% else %}
+            <td></td>
+            {% endif %}
+
+            {% if mem.work_city != None %}
             <td>{{ mem.work_city }}, {{ mem.work_state }}</td>
+            {% else %}
+            <td></td>
+            {% endif %}
         </tr>
         {% endfor %}
     </tbody>
