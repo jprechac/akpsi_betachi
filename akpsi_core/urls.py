@@ -11,6 +11,7 @@ urlpatterns = [
     re_path(r'^officer/majors$', views.majors, name="majors"),
     re_path(r'^officer/pledge-classes$', views.pledge_classes, name="pledge_classes"),
     re_path(r'^officer/grad-classes$', views.grad_classes, name="grad_classes"),
+    re_path(r'^officer/careers$', views.careers, name="careers"),
     re_path(r'^active/(?P<pk>[A-Za-z0-9().]{8})$', views.bro_details, name="bro_details"),
     re_path(r'^alumnus/(?P<pk>[A-Za-z0-9().]{4,8})$', views.alumnus_details, name="alum_detail"),
 ]

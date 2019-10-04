@@ -15,6 +15,8 @@ from akpsi_core.models_ext import (
     MemberBetaChiActives, MemberBetaChiAlumni, MemberBetaChiPledges
 )
 
+import pandas as pd
+
 # Create your views here.
 class HomeView(TemplateView):
     """
@@ -198,5 +200,32 @@ def alumnus_details(request, pk):
     context = {
         'bro': alum
     }
+
+    return render(request, template, context)
+
+def careers(request):
+    if not request.user.is_staff:
+        return HttpResponseForbidden()
+    
+    template = "akpsi_core/officers/work_tables.html"
+    context = {}
+
+    company_counts = {}
+    companies = Member.objects.filter(work_company__isnull = False).values('work_company')
+    companies = [i['work_company'] for i in companies]
+    unique_companies = []
+    for i in companies:
+        if i not in unique_companies:
+            unique_companies.append(i)
+
+    for uc in unique_companies:
+        count = 0
+        for co in companies:
+            if co == uc:
+                count += 1
+        company_counts.update({uc:count})
+    
+    companies = pd.Series(company_counts)
+    context.update({'companies': companies.sort_values(ascending=False).items()})
 
     return render(request, template, context)
