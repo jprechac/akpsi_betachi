@@ -17,6 +17,31 @@ from akpsi_core.models_ext import (
 
 import pandas as pd
 
+# helper functions
+def get_uniques(all_values):
+    assert type(all_values) == list
+
+    unique_list = []
+    for v in all_values:
+        if v not in unique_list:
+            unique_list.append(v)
+    
+    return unique_list
+
+def get_count_of_unique(all_values, unique_values):
+    assert type(all_values) == list, "All values must be a list"
+    assert type(unique_values) == list, "Unique values must be a list"
+
+    counts = {}
+    for uv in unique_values:
+        count = 0
+        for av in all_values:
+            if av == uv:
+                count += 1
+        counts.update({uv: count})
+    
+    return counts
+
 # Create your views here.
 class HomeView(TemplateView):
     """
@@ -172,10 +197,7 @@ def grad_classes(request):
     grad_classes = MemberBetaChiActives.values('graduate_semester')
     grad_classes = [i['graduate_semester'] for i in grad_classes]
 
-    unique_classes = []
-    for i in grad_classes:
-        if i not in unique_classes:
-            unique_classes.append(i)
+    unique_classes = get_uniques(grad_classes)
         
     for clas in unique_classes:
         count = 0
@@ -210,22 +232,36 @@ def careers(request):
     template = "akpsi_core/officers/work_tables.html"
     context = {}
 
-    company_counts = {}
-    companies = Member.objects.filter(work_company__isnull = False).values('work_company')
-    companies = [i['work_company'] for i in companies]
-    unique_companies = []
-    for i in companies:
-        if i not in unique_companies:
-            unique_companies.append(i)
+    relevant_members = Member.objects.filter(work_company__isnull = False, akpsi_status__in=['Collegiate', 'Alumnus', 'Pledge'])
 
-    for uc in unique_companies:
-        count = 0
-        for co in companies:
-            if co == uc:
-                count += 1
-        company_counts.update({uc:count})
+    # get list of companies ordered by number of people
+    companies = relevant_members.values('work_company')
+    companies = [i['work_company'] for i in companies]
+
+    unique_companies = get_uniques(companies)
+    company_counts = get_count_of_unique(companies, unique_companies)
     
     companies = pd.Series(company_counts)
     context.update({'companies': companies.sort_values(ascending=False).items()})
+
+    # get list of cities ordered by number of people
+    cities = relevant_members.values('work_city')
+    cities = [i['work_city'] for i in cities]
+
+    unique_cities = get_uniques(cities)
+    city_counts = get_count_of_unique(cities, unique_cities)
+
+    cities = pd.Series(city_counts)
+    context.update({'cities': cities.sort_values(ascending=False).items()})
+
+    # get list of states ordered by number of people
+    states = relevant_members.values('work_state')
+    states = [i['work_state'] for i in states]
+
+    unique_states = get_uniques(states)
+    state_counts = get_count_of_unique(states, unique_states)
+
+    states = pd.Series(state_counts)
+    context.update({"states": states.sort_values(ascending=False).items()})
 
     return render(request, template, context)

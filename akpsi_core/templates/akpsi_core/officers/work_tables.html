@@ -7,10 +7,10 @@ Career Beginnings
 
 {% block content %}
 <div class="container">
-    <h1>Beta Chi Career Starting Points</h1>
+    <h1>Career Starting Points</h1>
     <div class="row">
         <div class="col-lg">
-            <h2 id="majors">Beta Chi First Jobs</h2>
+            <h2 id="companies">First Jobs</h2>
             <table class="table table-striped table-hover" style="max-width: 600px;">
                 <caption>Current Majors in Beta Chi</caption>
                 <thead class="thead-dark">
@@ -21,6 +21,44 @@ Career Beginnings
                 </thead>
                 <tbody>
                     {% for index, value in companies %}
+                    <tr>
+                        <td>{{ index }}</td>
+                        <td>{{ value }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg">
+            <h2 id="cities">Starting Cities</h2>
+            <table class="table table-striped table-hover" style="max-width: 600px;">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">City</th>
+                        <th scope="col">Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for index, value in cities %}
+                    <tr>
+                        <td>{{ index }}</td>
+                        <td>{{ value }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg">
+            <table class="table table-striped table-hover" style="max-width: 600px;">
+                <h2 id="states">Starting States</h2>
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">State</th>
+                        <th scope="col">Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for index, value in states %}
                     <tr>
                         <td>{{ index }}</td>
                         <td>{{ value }}</td>
