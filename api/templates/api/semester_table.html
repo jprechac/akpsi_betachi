@@ -1,0 +1,38 @@
+<table>
+    <thead>
+        <tr>
+            <th>Semester Code</th>
+            <th>Semester Term</th>
+            <th>Semester Year</th>
+            <th>Induction Date</th>
+            <th>Initiation Date</th>
+            <th>Beginning Actives</th>
+            <th>Applications</th>
+            <th>Prospects Interviewed</th>
+            <th>Bids Extended</th>
+            <th>Pledges Pinned</th>
+            <th>Brothers Initiated</th>
+            <th>Sponsorship Total</th>
+            <th>Fundraising</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in semesters %}
+        <tr>
+            <td>{{ row.semester_code|default_if_none:"" }}</td>
+            <td>{{ row.semester_term|default_if_none:"" }}</td>
+            <td>{{ row.semester_year|default_if_none:"" }}</td>
+            <td>{{ row.semester_induction|default_if_none:"" }}</td>
+            <td>{{ row.semester_initiation|default_if_none:"" }}</td>
+            <td>{{ row.beginning_actives|default_if_none:"" }}</td>
+            <td>{{ row.applications|default_if_none:"" }}</td>
+            <td>{{ row.prospect_interviews|default_if_none:"" }}</td>
+            <td>{{ row.bids_extended|default_if_none:"" }}</td>
+            <td>{{ row.pledges_pinned|default_if_none:"" }}</td>
+            <td>{{ row.brothers_initiated|default_if_none:"" }}</td>
+            <td>{{ row.sponsorships|default_if_none:"" }}</td>
+            <td>{{ row.fundraising|default_if_none:"" }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

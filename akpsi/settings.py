@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'akpsi_core',
     'vote',
     'points',
+    'api',
 ]
 
 MIDDLEWARE = [
