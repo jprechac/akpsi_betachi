@@ -16,10 +16,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 from django.urls import include
+from rest_framework import routers
+
+from apis import views as api_views
+
+# ------------------------------------------------------------------------------
+
+router = routers.DefaultRouter()
+router.register(r'semester', api_views.SemesterViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^',include('akpsi_core.urls')),
     re_path(r'^vote/', include('vote.urls')),
     re_path(r'^points/', include('points.urls')),
+    path('api_auth/', include('rest_framework.urls', namespace="rest_framework")),
+    path('apis/', include(router.urls))
 ]
