@@ -38,7 +38,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = get_env_variable('AKPSI_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = get_env_variable('HEROKU_DEBUG')
+DEBUG = True if os.environ['HEROKU_DEBUG'] == 'TRUE' else False
 
 ALLOWED_HOSTS = []
 

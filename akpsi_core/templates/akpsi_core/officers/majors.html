@@ -20,11 +20,10 @@ Majors & Colleges
                     </tr>
                 </thead>
                 <tbody>
-                    {% for ii in major_counts %}
+                    {% for major in major_counts %}
                     <tr>
-                        {% for i in ii %}
-                        <td>{{ i }}</td>
-                        {% endfor %}
+                        <td><a href="{% url 'major_details' pk=major.0 %}">{{ major.0 }}</a></td>
+                        <td>{{ major.1 }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

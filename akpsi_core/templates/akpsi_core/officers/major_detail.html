@@ -1,0 +1,64 @@
+{% extends 'akpsi_core/base.html' %}
+{% load static %}
+
+{% block title %}
+{{ major }}
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <h1>Current brothers in {{major}}</h1>
+    <table class="table table-striped table-hover">
+        <caption>Current Brothers in {{ major }}</caption>
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Chapter Status</th>
+                <th scope="col">Email 1</th>
+                <th scope="col">Email 2</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Pledge Class</th>
+                <th scope="col">Graduating Semester</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for mem in roster %}
+            <tr>
+                <td><a href="{% url 'bro_details' pk=mem.member_code %}">{{ mem }}</a></td>
+                <td>{{ mem.get_chapter_status_display }}</td>
+
+                {% if mem.email1 != None %}
+                <td><a href="mailto:{{ mem.email1 }}">{{ mem.email1 }}</a></td>
+                {% else %}
+                <td></td>
+                {% endif %}
+
+                {% if mem.email2 != None %}
+                <td><a href="mailto:{{ mem.email2 }}">{{ mem.email2 }}</a></td>
+                {% else %}
+                <td></td>
+                {% endif %}
+
+                {% if mem.phone != None %}
+                <td>{{ mem.phone }}</td>
+                {% else %}
+                <td></td>
+                {% endif %}
+
+                {% if mem.pledge_semester != None %}
+                <td>{{ mem.pledge_semester }}</td>
+                {% else %}
+                <td></td>
+                {% endif %}
+
+                {% if mem.graduate_semester != None %}
+                <td>{{ mem.graduate_semester }}</td>
+                {% else %}
+                <td></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}

@@ -158,6 +158,18 @@ def majors(request):
 
     return render(request, template, context)
 
+def major_detais(request, pk):
+    if not request.user.is_staff:
+        return HttpResponseForbidden()
+    template = "akpsi_core/officers/major_detail.html"
+    roster = MemberBetaChiActives.filter(major=pk)
+    context = {
+        "roster": roster,
+        "major": pk
+    }
+    return render(request, template, context)
+
+
 def pledge_classes(request):
     if not request.user.is_staff:
         return HttpResponseForbidden()
