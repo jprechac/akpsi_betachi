@@ -1,20 +1,23 @@
 from django.http import HttpResponseForbidden, HttpResponseNotFound
 from django.shortcuts import render, get_object_or_404
-
+from django.db.models import Count
 from django.views.generic import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 
-from django.db.models import Count
+import pandas as pd
 
-from akpsi_core.models import (
+from logging import getLogger
+logger = getLogger(__name__)
+
+from membership.models import (
     Member, Officer, Semester, Chapter, College
 )
-from akpsi_core.models_ext import (
+from membership.models_ext import (
     MemberBetaChiActives, MemberBetaChiAlumni, MemberBetaChiPledges
 )
 
-import pandas as pd
+# -----------------------------------------------------------------------------
 
 # helper functions
 def get_uniques(all_values):

@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('akpsi_core', '0006_auto_20190930_1833'),
+        ('membership', '0006_auto_20190930_1833'),
     ]
 
     operations = [

@@ -1,4 +1,4 @@
-from akpsi_core import models as core_models
+from membership import models as core_models
 
 from rest_framework import serializers
 

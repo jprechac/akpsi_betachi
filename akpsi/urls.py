@@ -27,7 +27,7 @@ router.register(r'semester', api_views.SemesterViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path(r'^',include('akpsi_core.urls')),
+    re_path(r'^',include('membership.urls')),
     re_path(r'^vote/', include('vote.urls')),
     re_path(r'^points/', include('points.urls')),
     path('api_auth/', include('rest_framework.urls', namespace="rest_framework")),

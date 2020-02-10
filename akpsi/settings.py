@@ -53,7 +53,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'akpsi_core',
+
+    # my apps
+    'membership',
     'vote',
     'points',
 ]

@@ -3,7 +3,7 @@ from rest_framework import viewsets
 from datetime import datetime
 
 from .serializers import *
-from akpsi_core import models as core_models
+from membership import models as core_models
 
 # Create your views here.
 year = datetime.now().year
